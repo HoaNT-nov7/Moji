@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import crypto, { setEngine } from "crypto";
+import crypto from "crypto";
 import Session from "../models/Session.js";
 
 const ACCESS_TOKEN_TTL = "15m";
