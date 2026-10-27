@@ -8,6 +8,7 @@ import { protectedRoute } from "./middlewares/authMiddleware.js";
 import cors from "cors";
 import messageRoute from "./routes/messageRoute.js";
 import friendRoute from "./routes/friendRoute.js";
+import conversationRoute from "./routes/conversationRoute.js";
 
 dotenv.config();
 
@@ -27,9 +28,10 @@ app.use(protectedRoute);
 app.use("/api/users", userRoute);
 app.use("/api/friends", friendRoute);
 app.use("/api/messages", messageRoute);
+app.use("/api/conversations", conversationRoute);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`Server bat dau tren cong ${PORT}`);
+    console.log(`Server bắt đầu trên cổng ${PORT}`);
   });
 });

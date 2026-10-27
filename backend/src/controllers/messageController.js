@@ -24,7 +24,7 @@ export const sendDirectMessage = async (req, res) => {
           { userId: senderId, joinedAt: new Date() },
           { userId: recepientId, joinedAt: new Date() },
         ],
-        lastMessage: new Date(),
+        lastMessageAt: new Date(),
         unreadCounts: new Map(),
       });
     }

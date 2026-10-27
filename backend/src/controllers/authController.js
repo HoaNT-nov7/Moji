@@ -15,7 +15,7 @@ export const signUp = async (req, res) => {
     if (!username || !password || !email || !firstName || !lastName) {
       return res.status(400).json({
         message:
-          "Khong the thieu username, password, email, firstName va lastName",
+          "Không thể thiếu username, password, email, firstName và lastName",
       });
     }
 
@@ -24,7 +24,7 @@ export const signUp = async (req, res) => {
     const duplicate = await User.findOne({ username });
 
     if (duplicate) {
-      return res.status(409).json({ message: "Username da ton tai" });
+      return res.status(409).json({ message: "Username đã tồn tại" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -33,13 +33,13 @@ export const signUp = async (req, res) => {
       username,
       hashedPassword,
       email,
-      displayName: `${firstName} ${lastName}`,
+      displayName: `${lastName} ${firstName}`,
     });
 
     return res.sendStatus(204);
   } catch (error) {
-    console.error("Loi khi goi signUp ", error);
-    res.status(500).json({ message: "Loi he thong" });
+    console.error("Lỗi khi gọi signUp ", error);
+    res.status(500).json({ message: "Lỗi hệ thống" });
   }
 };
 
@@ -48,7 +48,7 @@ export const signIn = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res.status(400).json({ message: "Thieu username hoac password" });
+      return res.status(400).json({ message: "Thiếu username hoặc password" });
     }
 
     const user = await User.findOne({ username });
@@ -56,7 +56,7 @@ export const signIn = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: "username hoac password khong chinh xac" });
+        .json({ message: "username hoặc password không chính xác" });
     }
 
     const passwordCorrect = await bcrypt.compare(password, user.hashedPassword);
@@ -64,7 +64,7 @@ export const signIn = async (req, res) => {
     if (!passwordCorrect) {
       return res
         .status(401)
-        .json({ message: "username hoac password khong chinh xac" });
+        .json({ message: "username hoặc password không chính xác" });
     }
 
     // tao accesstoken voi jWT
@@ -97,10 +97,10 @@ export const signIn = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: `User ${user.displayName} da dang nhap`, accessToken });
+      .json({ message: `User ${user.displayName} đã đăng nhập`, accessToken });
   } catch (error) {
-    console.error("Loi khi goi signIn ", error);
-    res.status(500).json({ message: "Loi he thong" });
+    console.error("Lỗi khi gọi signIn ", error);
+    res.status(500).json({ message: "Lỗi hệ thống" });
   }
 };
 
@@ -119,8 +119,8 @@ export const signOut = async (req, res) => {
 
     return res.sendStatus(204);
   } catch (error) {
-    console.error("Loi khi goi signOut", error);
-    res.status(500).json({ message: "Loi he thong" });
+    console.error("Lỗi khi gọi signOut", error);
+    res.status(500).json({ message: "Lỗi hệ thống" });
   }
 };
 
