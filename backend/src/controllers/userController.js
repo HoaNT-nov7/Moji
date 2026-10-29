@@ -7,7 +7,3 @@ export const authMe = async (req, res) => {
     res.status(500).json({ message: "Loi he thong" });
   }
 };
-
-export const test = async (req, res) => {
-  return res.sendStatus(204);
-};
