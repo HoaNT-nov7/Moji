@@ -3,6 +3,9 @@ import ChatCard from "./ChatCard";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useChatStore } from "@/stores/useChatStore";
 import { cn } from "cn";
+import UserAvatar from "./UserAvatar";
+import StatusBadge from "./StatusBadge";
+import Unreadbadge from "./Unreadbadge";
 
 const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   const { user } = useAuthStore();
@@ -37,9 +40,14 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
       onSelect={handleSelectConversation}
       leftSection={
         <>
-          {/* user avatar */}
-          {/* status badge */}
-          {/* unread count */}
+          <UserAvatar
+            type="sidebar"
+            name={otherUser.displayName ?? ""}
+            avatarUrl={otherUser.avatarUrl ?? undefined}
+          />
+
+          <StatusBadge status="online" />
+          {unreadCount > 0 && <Unreadbadge unreadCount={unreadCount} />}
         </>
       }
       subtitle={
