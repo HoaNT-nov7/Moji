@@ -9,8 +9,12 @@ import Unreadbadge from "./Unreadbadge";
 
 const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   const { user } = useAuthStore();
-  const { activeConversationId, setActiveConversation, messages } =
-    useChatStore();
+  const {
+    activeConversationId,
+    setActiveConversation,
+    messages,
+    fetchMessages,
+  } = useChatStore();
 
   if (!user) return null;
 
@@ -23,7 +27,7 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   const handleSelectConversation = async (id: string) => {
     setActiveConversation(id);
     if (!messages[id]) {
-      // fetch messages
+      await fetchMessages();
     }
   };
 

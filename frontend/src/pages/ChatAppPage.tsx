@@ -4,7 +4,7 @@ import ChatWindowLayout from "@/components/chat/ChatWindowLayout";
 
 const ChatAppPage = () => {
   return (
-    <SidebarProvider>
+    <SidebarProvider className="h-dvh overflow-hidden">
       <AppSidebar />
       <ChatWindowLayout />
     </SidebarProvider>
