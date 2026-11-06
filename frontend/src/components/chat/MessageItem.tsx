@@ -35,7 +35,7 @@ const MessageItem = ({
   return (
     <div
       className={cn(
-        "flex gap-2 message-bounce",
+        "flex gap-2 message-bounce mt-1",
         message.isOwn ? "justify-end" : "justify-start",
       )}
     >
@@ -66,7 +66,7 @@ const MessageItem = ({
               : "chat-buble-received ",
           )}
         >
-          <p className="text-sm leading-relaxed break-words">
+          <p className="text-sm leading-relaxed wrap-break-words">
             {message.content}
           </p>
         </Card>
