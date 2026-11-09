@@ -69,7 +69,11 @@ export interface ChatState {
 
   addMessage: (message: Message) => Promise<void>;
 
-  updateConversation: (conversation: Conversation) => Promise<void>;
+  updateConversation: (
+    conversation: Partial<Conversation> & Pick<Conversation, "_id">,
+  ) => Promise<void>;
+
+  markAsSeen: () => Promise<void>;
 }
 
 export interface SocketState {
