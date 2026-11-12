@@ -305,6 +305,14 @@
     @apply absolute inset-0 rounded-full bg-primary/30 animate-ping duration-[2000ms];
   }
 
+  .error-message {
+    @apply text-sm text-destructive;
+  }
+
+  .success-message {
+    @apply text-sm text-emerald-500;
+  }
+
   /* Message bounce in animation */
   .message-bounce {
     animation: messageSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)
