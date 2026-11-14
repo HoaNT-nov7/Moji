@@ -23,7 +23,7 @@ const SendFriendRequestForm = ({
 }: SendRequestProps) => {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <div>
+      <div className="space-y-4">
         <span className="success-message">
           Tìm thấy <span className="font-semibold">@{searchedUsername}</span>{" "}
           rồi nè
@@ -37,7 +37,7 @@ const SendFriendRequestForm = ({
           id="message"
           placeholder="Chào bạn ~ Có thể kết bạn được không? ..."
           rows={3}
-          className="glass border-border/50 focus:border-primary/50 transition-smooth resize-none"
+          className="glass rounded-xl px-3 border-border/50 focus-visible:border-primary/50 transition-smooth resize-none"
           {...register("message")}
         />
       </div>
