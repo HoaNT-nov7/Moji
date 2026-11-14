@@ -16,6 +16,7 @@ const SentRequests = () => {
       <>
         {sentList.map((req) => (
           <FriendRequestItem
+            key={req._id}
             requestInfo={req}
             type="sent"
             actions={

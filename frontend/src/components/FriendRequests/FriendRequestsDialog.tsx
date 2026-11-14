@@ -8,6 +8,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFriendStore } from "@/stores/useFriendStore";
 import SentRequests from "./SentRequests";
+import ReceivedRequests from "./ReceivedRequests";
 
 interface FriendRequestsDialogProps {
   open: boolean;
@@ -36,13 +37,19 @@ const FriendRequestsDialog = ({ open, setOpen }: FriendRequestsDialogProps) => {
           <DialogTitle>Lời mời kết bạn</DialogTitle>
         </DialogHeader>
 
-        <Tabs value={tab} onValueChange={setTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="received">Đã nhận</TabsTrigger>
-            <TabsTrigger value="sent">Đã gửi</TabsTrigger>
+        <Tabs value={tab} onValueChange={setTab} className="w-full flex-col">
+          <TabsList className="grid w-full grid-cols-2 rounded-2xl">
+            <TabsTrigger value="received" className="rounded-2xl">
+              Đã nhận
+            </TabsTrigger>
+            <TabsTrigger value="sent" className="rounded-2xl">
+              Đã gửi
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="received"></TabsContent>
+          <TabsContent value="received">
+            <ReceivedRequests />
+          </TabsContent>
           <TabsContent value="sent">
             <SentRequests />
           </TabsContent>
