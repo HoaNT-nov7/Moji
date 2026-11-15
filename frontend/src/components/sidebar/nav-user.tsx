@@ -20,7 +20,7 @@ import type { User } from "@/types/user";
 import { ChevronsUpDownIcon, UserIcon, Bell } from "lucide-react";
 import Logout from "../auth/Logout";
 import { useState } from "react";
-import FriendRequestsDialog from "../FriendRequests/FriendRequestsDialog";
+import FriendRequestsDialog from "../friendRequests/FriendRequestsDialog";
 
 export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar();
