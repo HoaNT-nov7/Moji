@@ -16,7 +16,7 @@ const ChatWindowBody = () => {
     "delivered" | "seen"
   >("delivered");
 
-  const messages = allMessages[activeConversationId!]?.items ?? null;
+  const messages = allMessages[activeConversationId!]?.items ?? [];
   const hasMore = allMessages[activeConversationId!]?.hasMore ?? false;
 
   const reversedMessages = [...messages].reverse();

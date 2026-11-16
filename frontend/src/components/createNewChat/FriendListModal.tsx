@@ -3,18 +3,20 @@ import { DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { MessageCircleMore, Users } from "lucide-react";
 import { Card } from "../ui/card";
 import UserAvatar from "../chat/UserAvatar";
+import { useChatStore } from "@/stores/useChatStore";
 
-const FriendListModal = () => {
+interface FriendListModalProps {
+  onClose: () => void;
+}
+
+const FriendListModal = ({ onClose }: FriendListModalProps) => {
   const { friends } = useFriendStore();
+  const { createConversation } = useChatStore();
 
-  if (!friends || friends.length === 0) {
-    return (
-      <div className="text-center py-8 text-muted-foreground">
-        <Users className="size-12 mx-auto mb-3 opacity-50" />
-        Chưa có bạn bè. Thêm bạn mới để trò chuyện
-      </div>
-    );
-  }
+  const handleAddConversation = async (friendId: string) => {
+    await createConversation("direct", "", [friendId]);
+    onClose();
+  };
 
   return (
     <DialogContent>
@@ -34,6 +36,7 @@ const FriendListModal = () => {
           {friends.map((friend) => (
             <Card
               key={friend._id}
+              onClick={() => handleAddConversation(friend._id)}
               className="p-3 cursor-pointer transition-smooth hover:shadow-soft glass hover:bg-muted/30 group/friendCard"
             >
               <div className="flex items-center gap-3">
@@ -56,6 +59,13 @@ const FriendListModal = () => {
               </div>
             </Card>
           ))}
+
+          {friends.length === 0 && (
+            <div className="text-center py-8 text-muted-foreground">
+              <Users className="size-12 mx-auto mb-3 opacity-50" />
+              Chưa có bạn bè. Thêm bạn mới để trò chuyện
+            </div>
+          )}
         </div>
       </div>
     </DialogContent>
