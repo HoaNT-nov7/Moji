@@ -4,7 +4,7 @@ export const updateConversationAfterCreateMessage = (
   senderId,
 ) => {
   conversation.set({
-    seedBy: [],
+    seenBy: [],
     lastMessageAt: message.createdAt,
     lastMessage: {
       _id: message._id,
@@ -29,6 +29,7 @@ export const emitNewMessage = (io, conversation, message) => {
       _id: conversation._id,
       lastMessage: conversation.lastMessage,
       lastMessageAt: conversation.lastMessageAt,
+      seenBy: conversation.seenBy
     },
     unreadCounts: conversation.unreadCounts,
   });

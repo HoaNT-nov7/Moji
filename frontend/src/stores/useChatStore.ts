@@ -13,6 +13,7 @@ export const useChatStore = create<ChatState>()(
       activeConversationId: null,
       convoLoading: false,
       messageLoading: false,
+      loading: false,
 
       setActiveConversation: (id) => set({ activeConversationId: id }),
       reset: () => {
@@ -99,11 +100,11 @@ export const useChatStore = create<ChatState>()(
             activeConversationId || undefined,
           );
 
-          set((state) => ({
-            conversations: state.conversations.map((c) =>
-              c._id === activeConversationId ? { ...c, seedBy: [] } : c,
-            ),
-          }));
+          // set((state) => ({
+          //   conversations: state.conversations.map((c) =>
+          //     c._id === activeConversationId ? { ...c, seedBy: [] } : c,
+          //   ),
+          // }));
         } catch (error) {
           console.error("Lỗi xảy ra khi gửi tin nhắn trực tiếp", error);
         }
@@ -113,11 +114,11 @@ export const useChatStore = create<ChatState>()(
         try {
           await ChatService.sendGroupMessage(conversationId, content, imgUrl);
 
-          set((state) => ({
-            conversations: state.conversations.map((c) =>
-              c._id === get().activeConversationId ? { ...c, seedBy: [] } : c,
-            ),
-          }));
+          // set((state) => ({
+          //   conversations: state.conversations.map((c) =>
+          //     c._id === get().activeConversationId ? { ...c, seenBy: [] } : c,
+          //   ),
+          // }));
         } catch (error) {
           console.error("Lỗi xảy ra khi gửi tin nhắn nhóm", error);
         }
@@ -219,6 +220,8 @@ export const useChatStore = create<ChatState>()(
 
       createConversation: async (type, name, memberIds) => {
         try {
+          set({ loading: true });
+
           const conversation = await ChatService.createConversation(
             type,
             name,
@@ -232,6 +235,8 @@ export const useChatStore = create<ChatState>()(
             .socket?.emit("join-conversation", conversation._id);
         } catch (error) {
           console.error("Lỗi xảy ra khi createConversation", error);
+        } finally {
+          set({ loading: false });
         }
       },
     }),
