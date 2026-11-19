@@ -52,11 +52,11 @@ export const useSocketStore = create<SocketState>((set, get) => ({
         unreadCounts,
       };
 
-      // if (
-      //   useChatStore.getState().activeConversationId === message.conversationId
-      // ) {
-      //   useChatStore.getState().markAsSeen();
-      // }
+      if (
+        useChatStore.getState().activeConversationId === message.conversationId
+      ) {
+        useChatStore.getState().markAsSeen();
+      }
 
       useChatStore.getState().updateConversation(updatedConversation);
     });

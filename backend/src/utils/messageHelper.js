@@ -29,7 +29,7 @@ export const emitNewMessage = (io, conversation, message) => {
       _id: conversation._id,
       lastMessage: conversation.lastMessage,
       lastMessageAt: conversation.lastMessageAt,
-      seenBy: conversation.seenBy
+      // seenBy: conversation.seenBy
     },
     unreadCounts: conversation.unreadCounts,
   });

@@ -100,11 +100,11 @@ export const useChatStore = create<ChatState>()(
             activeConversationId || undefined,
           );
 
-          // set((state) => ({
-          //   conversations: state.conversations.map((c) =>
-          //     c._id === activeConversationId ? { ...c, seedBy: [] } : c,
-          //   ),
-          // }));
+          set((state) => ({
+            conversations: state.conversations.map((c) =>
+              c._id === activeConversationId ? { ...c, seenBy: [] } : c,
+            ),
+          }));
         } catch (error) {
           console.error("Lỗi xảy ra khi gửi tin nhắn trực tiếp", error);
         }
@@ -114,11 +114,11 @@ export const useChatStore = create<ChatState>()(
         try {
           await ChatService.sendGroupMessage(conversationId, content, imgUrl);
 
-          // set((state) => ({
-          //   conversations: state.conversations.map((c) =>
-          //     c._id === get().activeConversationId ? { ...c, seenBy: [] } : c,
-          //   ),
-          // }));
+          set((state) => ({
+            conversations: state.conversations.map((c) =>
+              c._id === get().activeConversationId ? { ...c, seenBy: [] } : c,
+            ),
+          }));
         } catch (error) {
           console.error("Lỗi xảy ra khi gửi tin nhắn nhóm", error);
         }

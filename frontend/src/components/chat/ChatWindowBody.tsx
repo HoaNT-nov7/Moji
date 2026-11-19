@@ -12,9 +12,9 @@ const ChatWindowBody = () => {
     fetchMessages,
   } = useChatStore();
 
-  // const [lastMessageStatus, setLastMessageStatus] = useState<
-  //   "delivered" | "seen"
-  // >("delivered");
+  const [lastMessageStatus, setLastMessageStatus] = useState<
+    "delivered" | "seen"
+  >("delivered");
 
   const messages = allMessages[activeConversationId!]?.items ?? [];
   const hasMore = allMessages[activeConversationId!]?.hasMore ?? false;
@@ -24,9 +24,6 @@ const ChatWindowBody = () => {
   const selectedConvo = conversations.find(
     (c) => c._id === activeConversationId,
   );
-
-  const lastMessageStatus: "delivered" | "seen" =
-    (selectedConvo?.seenBy?.length ?? 0) > 0 ? "seen" : "delivered";
 
   //ref
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -40,7 +37,7 @@ const ChatWindowBody = () => {
 
     const seenBy = selectedConvo?.seenBy ?? [];
 
-    // setLastMessageStatus(seenBy.length > 0 ? "seen" : "delivered");
+    setLastMessageStatus(seenBy.length > 0 ? "seen" : "delivered");
   }, [selectedConvo]);
 
   //kéo xuống dưới khi load convo
