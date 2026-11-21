@@ -73,15 +73,13 @@ const NewGroupChatModel = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <Button
-          variant="ghost"
-          onClick={handleGetFriends}
-          className="flex z-10 justify-center items-center size-5 rounded-full hover:bg-sidebar-accent transiton cursor-pointer"
-        >
-          <Users className="size-4" />
-          <span className="sr-only">Tạo nhóm</span>
-        </Button>
+      <DialogTrigger
+        render={<Button variant="ghost" />}
+        onClick={handleGetFriends}
+        className="flex z-10 justify-center items-center size-5 rounded-full hover:bg-sidebar-accent transiton cursor-pointer"
+      >
+        <Users className="size-4" />
+        <span className="sr-only">Tạo nhóm</span>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-106.25 border-none">

@@ -78,10 +78,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         {/* Direct message */}
         <SidebarGroup>
-          <SidebarGroupLabel className="uppercase">bạn bè</SidebarGroupLabel>
-          <SidebarGroupAction title="Kết bạn" className="cursor-pointer">
+          <div className="flex items-center justify-between">
+            <SidebarGroupLabel className="uppercase">bạn bè</SidebarGroupLabel>
             <AddFriendModal />
-          </SidebarGroupAction>
+          </div>
 
           <SidebarGroupContent>
             <DirectMessageList />
